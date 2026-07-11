@@ -1,11 +1,14 @@
 {
-  "name": "whatnext-learning",
-  "version": "1.0.0",
+  "name": "what-next",
+  "version": "2.0.0",
   "private": true,
+  "description": "What Next — live online classes on Google Meet. Enquire via WhatsApp or call.",
   "dependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-scripts": "^5.0.1"
+    "react-icons": "^5.2.1",
+    "react-scripts": "^5.0.1",
+    "web-vitals": "^3.5.2"
   },
   "scripts": {
     "start": "react-scripts start",
