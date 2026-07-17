@@ -1,37 +1,38 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from 'react';
 
-// Adds a "is-visible" toggle once the element scrolls into view.
-// Respects prefers-reduced-motion by revealing immediately.
+/**
+ * Attaches an IntersectionObserver to every [data-reveal] element within
+ * the returned ref's subtree, adding `is-visible` once each enters the
+ * viewport. Elements un-reveal is intentionally NOT reversed, so animations
+ * play once per page visit (feels calmer while scrolling up/down).
+ */
 export default function useReveal(options = {}) {
-  const ref = useRef(null);
-  const [visible, setVisible] = useState(false);
+  const containerRef = useRef(null);
 
   useEffect(() => {
-    const node = ref.current;
-    if (!node) return undefined;
+    const root = containerRef.current || document;
+    const els = root.querySelectorAll('[data-reveal]');
 
-    const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-
-    if (prefersReduced) {
-      setVisible(true);
-      return undefined;
+    if (!('IntersectionObserver' in window)) {
+      els.forEach((el) => el.classList.add('is-visible'));
+      return;
     }
 
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.unobserve(node);
-        }
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
       },
-      { threshold: 0.15, rootMargin: "0px 0px -40px 0px", ...options }
+      { threshold: 0.18, rootMargin: '0px 0px -8% 0px', ...options }
     );
 
-    observer.observe(node);
+    els.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, [options]);
 
-  return [ref, visible];
+  return containerRef;
 }

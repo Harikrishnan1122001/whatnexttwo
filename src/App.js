@@ -1,24 +1,34 @@
-import "./App.css";
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import Courses from "./components/Courses";
-import HowItWorks from "./components/HowItWorks";
-import WhyUs from "./components/WhyUs";
-import Enquiry from "./components/Enquiry";
-import Footer from "./components/Footer";
-import FloatingContact from "./components/FloatingContact";
+import React from 'react';
+import useReveal from './hooks/useReveal';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import Story from './components/Story';
+import Services from './components/Services';
+import Timeline from './components/Timeline';
+import Gallery from './components/Gallery';
+import Testimonials from './components/Testimonials';
+import Countdown from './components/Countdown';
+import Contact from './components/Contact';
+import Footer from './components/Footer';
+import './App.css';
 
 function App() {
+  const containerRef = useReveal();
+
   return (
-    <div className="App">
+    <div className="app" ref={containerRef}>
       <Navbar />
-      <Hero />
-      <Courses />
-      <HowItWorks />
-      <WhyUs />
-      <Enquiry />
+      <main>
+        <Hero />
+        <Story />
+        <Services />
+        <Timeline />
+        <Gallery />
+        <Testimonials />
+        <Countdown />
+        <Contact />
+      </main>
       <Footer />
-      <FloatingContact />
     </div>
   );
 }

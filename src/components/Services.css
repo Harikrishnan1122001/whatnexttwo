@@ -1,0 +1,72 @@
+.services {
+  padding: 120px 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 90% 10%, var(--sky-soft) 0%, transparent 60%),
+    var(--blush-soft);
+}
+
+.services__head { max-width: 560px; margin-bottom: 56px; }
+.services__head h2 { margin-top: 14px; font-size: clamp(30px, 4vw, 42px); }
+
+.services__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 26px;
+}
+@media (min-width: 700px) { .services__grid { grid-template-columns: 1fr 1fr; } }
+
+.svc-card {
+  --rx: 0deg;
+  --ry: 0deg;
+  position: relative;
+  padding: 36px 32px 40px;
+  border-radius: var(--radius-lg);
+  background: var(--white);
+  box-shadow: var(--shadow-card);
+  transform: perspective(900px) rotateX(var(--rx)) rotateY(var(--ry));
+  transition: transform 0.25s var(--ease), box-shadow 0.35s var(--ease);
+  overflow: hidden;
+}
+.svc-card:hover {
+  box-shadow: 0 26px 60px -20px rgba(43,39,64,0.28);
+}
+.svc-card::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  opacity: 0.16;
+  transition: transform 0.5s var(--ease);
+}
+.svc-card:hover::before { transform: scale(1.25); }
+.svc-card--rose::before { background: var(--rose); }
+.svc-card--sky::before { background: var(--sky-deep); }
+.svc-card--gold::before { background: var(--gold); }
+
+.svc-card__tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border-radius: 100px;
+  margin-bottom: 18px;
+  background: var(--blush);
+  color: var(--rose-deep);
+}
+.svc-card--sky .svc-card__tag { background: var(--sky-soft); color: var(--sky-deep); }
+.svc-card--gold .svc-card__tag { background: #faf1de; color: #a3792f; }
+
+.svc-card h3 { font-size: 22px; margin-bottom: 12px; }
+.svc-card p { color: var(--ink-soft); font-size: 14.5px; max-width: 380px; }
+
+.svc-card__arrow {
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 18px;
+  color: var(--rose-deep);
+  transition: transform 0.35s var(--ease);
+}
+.svc-card:hover .svc-card__arrow { transform: translateX(8px); }
