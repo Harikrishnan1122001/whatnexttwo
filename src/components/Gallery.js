@@ -7,7 +7,7 @@ const IMAGES = [
   { seed: "verabloom-g1", tall: true, caption: "Garden ceremony, Coimbatore" },
   { seed: "verabloom-g2", tall: false, caption: "Reception florals" },
   { seed: "verabloom-g3", tall: false, caption: "Mandap detailing" },
-  { seed: "verabloom-g4", tall: true, caption: "Beachside vows, Goa" },
+  // { seed: "verabloom-g4", tall: true, caption: "Beachside vows, Goa" },
   { seed: "verabloom-g5", tall: false, caption: "Evening reception lighting" },
   { seed: "verabloom-g6", tall: false, caption: "Bridal table styling" },
 ];
