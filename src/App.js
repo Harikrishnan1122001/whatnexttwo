@@ -1,35 +1,50 @@
-import React from 'react';
-import useReveal from './hooks/useReveal';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import Story from './components/Story';
-import Services from './components/Services';
-import Timeline from './components/Timeline';
-import Gallery from './components/Gallery';
-import Testimonials from './components/Testimonials';
-import Countdown from './components/Countdown';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import Loader from "./components/Loader";
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import Marquee from "./components/Marquee";
+import About from "./components/About";
+import Services from "./components/Services";
+import Journey from "./components/Journey";
+import Banner from "./components/Banner";
+import Gallery from "./components/Gallery";
+import Testimonials from "./components/Testimonials";
+import FAQ from "./components/FAQ";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
+import ScrollTopButton from "./components/ScrollTopButton";
 
 function App() {
-  const containerRef = useReveal();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = loading ? "hidden" : "auto";
+  }, [loading]);
 
   return (
-    <div className="app" ref={containerRef}>
+    <>
+      <Loader visible={loading} />
       <Navbar />
       <main>
         <Hero />
-        <Story />
+        <Marquee />
+        <About />
         <Services />
-        <Timeline />
+        <Journey />
+        <Banner />
         <Gallery />
         <Testimonials />
-        <Countdown />
+        <FAQ />
         <Contact />
       </main>
       <Footer />
-    </div>
+      <ScrollTopButton />
+    </>
   );
 }
 

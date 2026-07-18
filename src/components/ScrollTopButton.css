@@ -1,0 +1,40 @@
+.scroll-top-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 400;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--orchid-700);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 14px 30px -10px rgba(58, 17, 65, 0.4);
+}
+
+.progress-ring {
+  position: absolute;
+  inset: 0;
+  width: 52px;
+  height: 52px;
+  transform: rotate(-90deg);
+}
+
+.progress-ring-bg {
+  fill: none;
+  stroke: rgba(186, 85, 211, 0.15);
+  stroke-width: 3;
+}
+
+.progress-ring-fill {
+  fill: none;
+  stroke: var(--orchid);
+  stroke-width: 3;
+  stroke-linecap: round;
+  transform-origin: center;
+}
+
+.scroll-top-btn svg:last-child {
+  position: relative;
+}

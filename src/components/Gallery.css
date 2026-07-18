@@ -1,55 +1,42 @@
-.gallery { padding: 120px 0; background: var(--blush-soft); }
-.gallery__head { max-width: 560px; margin-bottom: 56px; }
-.gallery__head h2 { margin-top: 14px; font-size: clamp(30px, 4vw, 42px); }
-
-.gallery__grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-auto-rows: 140px;
-  gap: 18px;
-}
-@media (min-width: 720px) {
-  .gallery__grid { grid-template-columns: repeat(4, 1fr); grid-auto-rows: 160px; }
+.gallery-grid {
+  max-width: 1240px;
+  margin: 0 auto;
+  columns: 3 260px;
+  column-gap: 1.4rem;
 }
 
-.gallery__tile {
+.gallery-item {
+  break-inside: avoid;
+  margin-bottom: 1.4rem;
+}
+
+.gallery-frame {
   position: relative;
-  border-radius: var(--radius-md);
+  border-radius: 16px;
   overflow: hidden;
-  display: flex;
-  align-items: flex-end;
-  padding: 18px;
-  transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
   cursor: pointer;
 }
-.gallery__tile:hover { transform: translateY(-6px) scale(1.015); box-shadow: var(--shadow-soft); }
 
-.gallery__tile--tall { grid-row: span 2; }
-.gallery__tile--wide { grid-column: span 2; }
+.gallery-frame img {
+  width: 100%;
+  display: block;
+}
 
-.gallery__tile--rose { background: linear-gradient(150deg, var(--rose) 0%, #f8c9d8 100%); }
-.gallery__tile--sky { background: linear-gradient(150deg, var(--sky-deep) 0%, var(--sky) 100%); }
-.gallery__tile--gold { background: linear-gradient(150deg, var(--gold) 0%, #f3dfb8 100%); }
-
-.gallery__tile::after {
-  content: '';
+.gallery-caption {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.35) 100%);
-  opacity: 0;
-  transition: opacity 0.4s var(--ease);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1.4rem 1.2rem 1rem;
+  background: linear-gradient(0deg, rgba(44, 10, 48, 0.85), transparent);
+  color: #fff;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1rem;
 }
-.gallery__tile:hover::after { opacity: 1; }
 
-.gallery__label {
-  position: relative;
-  z-index: 1;
-  color: var(--white);
-  font-weight: 700;
-  font-size: 13px;
-  letter-spacing: 0.4px;
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+@media (max-width: 700px) {
+  .gallery-grid {
+    columns: 2 160px;
+  }
 }
-.gallery__tile:hover .gallery__label { opacity: 1; transform: translateY(0); }
