@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { CardamomArt, TurmericArt, FloralArt } from "./ProductArt";
+import { CardamomArt, TurmericArt, FloralArt } from "./ProductArt.js";
 import "./Products.css";
 
 const reveal = (dir = 1) => ({
