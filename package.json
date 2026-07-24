@@ -1,25 +1,18 @@
 {
-  "name": "spd-exports",
-  "version": "1.0.0",
+  "name": "spd-exports-site",
   "private": true,
-  "description": "SPD Exports — From Indian Soil to Global Aroma. Premium spice & floral export house website.",
-  "dependencies": {
-    "framer-motion": "^11.2.10",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-scripts": "^5.0.1"
-  },
+  "version": "1.0.0",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "dependencies": {
+    "lucide-react": "^0.383.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-scripts": "^5.0.1"
   },
   "browserslist": {
     "production": [
