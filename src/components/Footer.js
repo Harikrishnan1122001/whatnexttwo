@@ -1,6 +1,6 @@
 import React from "react";
 import Emblem from "./Emblem";
-import "./footer.css";
+import "./Footer.css";
 
 const SOCIALS = [
   { label: "LinkedIn", href: "#" },

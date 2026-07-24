@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useScroll, useTransform, motion } from "framer-motion";
 import Emblem from "./Emblem";
-import "./scrollDial.css";
+import "./ScrollDial.css";
 
 export default function ScrollDial() {
   const { scrollYProgress } = useScroll();

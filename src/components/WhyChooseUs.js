@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import "./whyChooseUs.css";
+import "./WhyChooseUs.css";
 
 const ITEMS = [
   {

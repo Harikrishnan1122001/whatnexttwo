@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { CardamomArt, TurmericArt, FloralArt } from "./ProductArt";
-import "./products.css";
+import "./Products.css";
 
 const reveal = (dir = 1) => ({
   hidden: { opacity: 0, x: 40 * dir },

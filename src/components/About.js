@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import "./about.css";
+import "./About.css";
 
 const reveal = {
   hidden: { opacity: 0, y: 34 },

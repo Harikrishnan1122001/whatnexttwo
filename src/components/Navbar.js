@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Emblem from "./Emblem";
-import "./navbar.css";
+import "./Navbar.css";
 
 const LINKS = [
   { href: "#about", label: "About" },

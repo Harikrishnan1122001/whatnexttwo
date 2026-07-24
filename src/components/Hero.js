@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Emblem from "./Emblem";
-import "./hero.css";
+import "./Hero.css";
 
 const container = {
   hidden: {},
