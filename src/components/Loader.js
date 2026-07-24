@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Emblem from "./Emblem";
-import "./loader.css";
+import "./Loader.css";
 
 export default function Loader({ onDone }) {
   const [phase, setPhase] = useState("draw"); // draw -> word -> exit -> gone
