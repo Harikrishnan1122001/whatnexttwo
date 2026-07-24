@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import { HiMenu, HiX } from "react-icons/hi";
-import "./Navbar.css";
+import { motion, AnimatePresence } from "framer-motion";
+import Emblem from "./Emblem";
+import "./navbar.css";
 
 const LINKS = [
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Journey", href: "#journey" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "Stories", href: "#testimonials" },
-  { label: "FAQ", href: "#faq" },
+  { href: "#about", label: "About" },
+  { href: "#products", label: "Products" },
+  { href: "#why-us", label: "Why Us" },
+  { href: "#partnership", label: "Contact" },
 ];
 
 export default function Navbar() {
@@ -17,73 +15,100 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
-    window.addEventListener("scroll", onScroll);
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const handleLinkClick = (href) => {
+  const handleLink = (href) => {
     setOpen(false);
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <motion.header
-      className={`navbar ${scrolled ? "scrolled" : ""}`}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 1.1 }}
-    >
-      <a href="#top" className="brand" onClick={(e) => { e.preventDefault(); handleLinkClick("#top"); }}>
-        <span className="brand-mark">V&amp;B</span>
-        <span className="brand-name">Vera &amp; Bloom</span>
-      </a>
+    <header className={`nav ${scrolled ? "nav--solid" : ""}`}>
+      <div className="nav__inner">
+        <a
+          href="#top"
+          className="nav__brand"
+          onClick={(e) => {
+            e.preventDefault();
+            handleLink("#top");
+          }}
+        >
+          <Emblem size={38} />
+          <span>
+            SPD <em>Exports</em>
+          </span>
+        </a>
 
-      <nav className="nav-links desktop">
-        {LINKS.map((l) => (
-          <a key={l.href} href={l.href} onClick={(e) => { e.preventDefault(); handleLinkClick(l.href); }}>
-            {l.label}
-          </a>
-        ))}
-      </nav>
-
-      <a
-        href="#contact"
-        className="btn btn-primary nav-cta desktop"
-        onClick={(e) => { e.preventDefault(); handleLinkClick("#contact"); }}
-      >
-        Plan With Us
-      </a>
-
-      <button className="nav-burger" onClick={() => setOpen(true)} aria-label="Open menu">
-        <HiMenu size={26} />
-      </button>
-
-      <motion.div
-        className="mobile-drawer"
-        initial={false}
-        animate={{ x: open ? 0 : "100%" }}
-        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <button className="nav-close" onClick={() => setOpen(false)} aria-label="Close menu">
-          <HiX size={26} />
-        </button>
-        <nav className="mobile-links">
+        <nav className="nav__links">
           {LINKS.map((l) => (
-            <a key={l.href} href={l.href} onClick={(e) => { e.preventDefault(); handleLinkClick(l.href); }}>
+            <a
+              key={l.href}
+              href={l.href}
+              onClick={(e) => {
+                e.preventDefault();
+                handleLink(l.href);
+              }}
+            >
               {l.label}
             </a>
           ))}
-          <a
-            href="#contact"
-            className="btn btn-primary"
-            onClick={(e) => { e.preventDefault(); handleLinkClick("#contact"); }}
-          >
-            Plan With Us
-          </a>
         </nav>
-      </motion.div>
-    </motion.header>
+
+        <a
+          className="nav__cta"
+          href="https://wa.me/917339559595"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Get a Quote
+        </a>
+
+        <button
+          className={`nav__burger ${open ? "is-open" : ""}`}
+          aria-label="Toggle menu"
+          onClick={() => setOpen((v) => !v)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+      </div>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            className="nav__mobile"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.35, ease: "easeInOut" }}
+          >
+            {LINKS.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleLink(l.href);
+                }}
+              >
+                {l.label}
+              </a>
+            ))}
+            <a
+              className="nav__mobile-cta"
+              href="https://wa.me/917339559595"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Get a Quote
+            </a>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </header>
   );
 }

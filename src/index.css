@@ -1,25 +1,36 @@
 :root {
-  /* ---- Palette ---- */
-  --plum-950: #2c0a30;
-  --plum-900: #3a1141;
-  --plum-800: #4a1a52;
-  --orchid-700: #8e3b9e;
-  --orchid: #ba55d3;
-  --orchid-light: #d98fe8;
-  --lavender-100: #f4e6f8;
-  --lavender-50: #faf3fb;
-  --ivory: #fdf9f7;
-  --gold: #c9a44c;
-  --gold-soft: #e4cf9a;
-  --ink: #2a1730;
-  --ink-soft: #6b5470;
+  /* ---- Color tokens, drawn from the SPD Exports mark ---- */
+  --cream: #faf6ec;
+  --cream-deep: #f1e8d4;
+  --paper: #fffdf8;
+  --ink: #16241b;
+  --ink-soft: #223327;
+  --ink-mute: #4b5c4f;
+  --blue-deep: #0d3a68;
+  --blue: #1a5c9e;
+  --blue-bright: #2e7bc6;
+  --sun-red: #d6472a;
+  --sun-orange: #ef8f34;
+  --sun-gold: #f6bd4a;
+  --line: rgba(22, 36, 27, 0.12);
+  --shadow-soft: 0 20px 60px -20px rgba(13, 58, 104, 0.25);
 
-  /* ---- Type ---- */
-  --font-display: "Cormorant Garamond", "Times New Roman", serif;
-  --font-body: "Jost", "Helvetica Neue", Arial, sans-serif;
+  /* produce accents, used only within illustrations + chips */
+  --leaf: #5c7a47;
+  --leaf-deep: #34492a;
+  --turmeric: #e8912b;
+  --turmeric-deep: #a85f18;
+  --floral-pink: #c97ca0;
+  --floral-lilac: #8c7bb5;
 
-  /* ---- Motion ---- */
-  --ease-silk: cubic-bezier(0.22, 1, 0.36, 1);
+  --font-display: "Fraunces", "Iowan Old Style", serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-utility: "Jost", "Inter", sans-serif;
+
+  --container: 1220px;
+  --radius-lg: 28px;
+  --radius-md: 18px;
+  --radius-sm: 10px;
 }
 
 * {
@@ -32,42 +43,34 @@ html {
 
 body {
   margin: 0;
-  background: var(--ivory);
+  background: var(--cream);
   color: var(--ink);
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
 h1, h2, h3, h4 {
   font-family: var(--font-display);
-  font-weight: 500;
   margin: 0;
-  color: var(--plum-900);
+  color: var(--ink);
+  letter-spacing: -0.01em;
 }
 
 p {
   margin: 0;
-  line-height: 1.7;
-  color: var(--ink-soft);
+  color: var(--ink-mute);
 }
 
 a {
-  text-decoration: none;
   color: inherit;
-}
-
-ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
+  text-decoration: none;
 }
 
 button {
   font-family: var(--font-body);
   cursor: pointer;
-  border: none;
-  background: none;
 }
 
 img {
@@ -76,112 +79,28 @@ img {
 }
 
 ::selection {
-  background: var(--orchid);
-  color: #fff;
+  background: var(--sun-gold);
+  color: var(--ink);
 }
 
-/* ---- Scrollbar ---- */
+/* Scroll reveal helper (progressive enhancement, framer-motion handles most) */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Custom scrollbar for a considered, premium feel */
 ::-webkit-scrollbar {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--lavender-50);
+  background: var(--cream);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--orchid);
+  background: linear-gradient(180deg, var(--sun-orange), var(--blue));
   border-radius: 10px;
-}
-
-/* ---- Shared utility classes ---- */
-.eyebrow {
-  font-family: var(--font-body);
-  font-size: 0.72rem;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  color: var(--orchid-700);
-  font-weight: 500;
-}
-
-.section {
-  padding: 7rem 8vw;
-  position: relative;
-}
-
-@media (max-width: 768px) {
-  .section {
-    padding: 4.5rem 6vw;
-  }
-}
-
-.section-head {
-  max-width: 640px;
-  margin: 0 auto 3.5rem;
-  text-align: center;
-}
-
-.section-head h2 {
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
-  font-style: italic;
-  margin-top: 0.6rem;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.95rem 2.1rem;
-  border-radius: 999px;
-  font-size: 0.85rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-weight: 500;
-  transition: transform 0.45s var(--ease-silk), box-shadow 0.45s var(--ease-silk), background 0.3s ease, color .3s ease;
-}
-
-.btn-primary {
-  background: linear-gradient(135deg, var(--orchid), var(--orchid-700));
-  color: #fff;
-  box-shadow: 0 10px 30px -10px rgba(186, 85, 211, 0.65);
-}
-
-.btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 16px 34px -8px rgba(186, 85, 211, 0.75);
-}
-
-.btn-outline {
-  background: transparent;
-  color: var(--plum-900);
-  border: 1px solid rgba(58, 17, 65, 0.3);
-}
-
-.btn-outline:hover {
-  background: var(--plum-900);
-  color: #fff;
-  transform: translateY(-3px);
-}
-
-.btn-outline.on-dark {
-  color: #fff;
-  border-color: rgba(255, 255, 255, 0.45);
-}
-.btn-outline.on-dark:hover {
-  background: #fff;
-  color: var(--plum-900);
-}
-
-/* focus visibility */
-a:focus-visible,
-button:focus-visible {
-  outline: 2px solid var(--orchid);
-  outline-offset: 3px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
-    scroll-behavior: auto !important;
-  }
 }

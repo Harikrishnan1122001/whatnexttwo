@@ -1,71 +1,54 @@
 .loader {
   position: fixed;
   inset: 0;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.loader-curtain {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 50%;
-  background: linear-gradient(160deg, var(--plum-900), var(--orchid-700) 70%, var(--orchid));
-}
-.loader-curtain.left { left: 0; }
-.loader-curtain.right { right: 0; }
-
-.loader-content {
-  position: relative;
-  z-index: 2;
+  z-index: 999;
+  background: var(--ink);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.6rem;
+  justify-content: center;
+  gap: 22px;
+  overflow: hidden;
 }
 
-.loader-heart {
-  width: 92px;
-  height: 92px;
+.loader__rays {
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(
+    circle at 50% 45%,
+    rgba(242, 153, 74, 0.16) 0%,
+    rgba(214, 71, 42, 0.06) 35%,
+    transparent 65%
+  );
+  animation: loaderPulse 3.2s ease-in-out infinite;
 }
 
-.loader-content p {
+@keyframes loaderPulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.15); opacity: 1; }
+}
+
+.loader__emblem {
+  position: relative;
+  filter: drop-shadow(0 10px 30px rgba(242, 153, 74, 0.35));
+}
+
+.loader__word {
+  position: relative;
+  display: flex;
+  font-family: var(--font-utility);
+  font-size: clamp(20px, 4vw, 30px);
+  letter-spacing: 0.34em;
+  color: var(--cream);
+  font-weight: 500;
+  padding-left: 0.34em; /* offsets letter-spacing on last char */
+}
+
+.loader__tag {
+  position: relative;
   font-family: var(--font-display);
   font-style: italic;
-  font-size: 1.3rem;
-  letter-spacing: 0.06em;
-  color: #fff;
-}
-
-/* floating background hearts */
-.loader-hearts {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.mini-heart {
-  position: absolute;
-  bottom: 20%;
-  background: #fff;
-  opacity: 0.7;
-}
-
-.mini-heart::before,
-.mini-heart::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: inherit;
-  border-radius: 50%;
-}
-.mini-heart::before { left: -50%; }
-.mini-heart::after { top: -50%; }
-.mini-heart {
-  transform: rotate(-45deg);
+  font-size: 15px;
+  color: var(--sun-gold);
+  letter-spacing: 0.02em;
 }
